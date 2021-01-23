@@ -29,9 +29,7 @@ docker-build-beta:
     - docker login -u "$CI_DOCKERHUB_REGISTRY_USER" -p "$CI_DOCKERHUB_REGISTRY_PASSWORD" $CI_DOCKERHUB_REGISTRY
   script:
     - docker build --pull -t "$CI_REGISTRY_IMAGE:$RELEASE_BETA" -t "$CI_DOCKERHUB_REGISTRY_IMAGE:$RELEASE_BETA" . -f Dockerfile.beta
-    - docker push "$CI_REGISTRY_IMAGE"
-    - docker push "$CI_REGISTRY_IMAGE:$RELEASE"
-    - docker push "$CI_DOCKERHUB_REGISTRY_IMAGE"
-    - docker push "$CI_DOCKERHUB_REGISTRY_IMAGE:$RELEASE"
+    - docker push "$CI_REGISTRY_IMAGE:$RELEASE_BETA"
+    - docker push "$CI_DOCKERHUB_REGISTRY_IMAGE:$RELEASE_BETA"
   only:
     - master
