@@ -1,7 +1,7 @@
 # This file is a template, and might need editing before it works on your project.
 variables:
   RELEASE: "production"
-  RELEASE_BETA: "21-beta"
+  RELEASE_BETA: "21-beta7"
 docker-build-production:
   # Official docker image.
   image: docker:latest
