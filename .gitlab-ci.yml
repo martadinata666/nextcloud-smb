@@ -16,7 +16,10 @@ docker-build-production:
     - docker push "$CI_REGISTRY_IMAGE:$RELEASE"
     - docker push "$CI_DOCKERHUB_REGISTRY_IMAGE:$RELEASE"
   only:
-    - master
+    refs:
+      - master
+    changes:
+      - "Dockerfile"
 
 docker-build-beta:
   # Official docker image.
@@ -32,4 +35,8 @@ docker-build-beta:
     - docker push "$CI_REGISTRY_IMAGE:$RELEASE_BETA"
     - docker push "$CI_DOCKERHUB_REGISTRY_IMAGE:$RELEASE_BETA"
   only:
-    - master
+    refs:
+      - master
+    changes:
+      - "Dockerfile.beta"
+    
