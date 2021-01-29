@@ -1,4 +1,5 @@
-FROM nextcloud:21-beta
+ARG BETA
+FROM nextcloud:$BETA
 
 RUN apt-get update && apt-get install -y ssl-cert nano procps smbclient
 RUN a2enmod ssl
