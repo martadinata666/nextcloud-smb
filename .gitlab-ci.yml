@@ -19,7 +19,8 @@ docker-build-production:
     refs:
       - master
     changes:
-      - "Dockerfile"
+      - Dockerfile
+      - .gitlab-ci.yml
 
 docker-build-beta:
   # Official docker image.
