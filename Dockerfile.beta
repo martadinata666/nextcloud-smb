@@ -1,6 +1,15 @@
 # DO NOT EDIT: created by update.sh from Dockerfile-debian.template
 FROM php:7.4-apache-buster
 
+# install the ssl-cert package which will create a "snakeoil" keypair
+RUN apt-get update \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y ssl-cert \
+ && rm -r /var/lib/apt/lists/*
+
+# enable ssl module and enable the default-ssl site
+RUN a2enmod ssl \
+ && a2ensite default-ssl
+
 # entrypoint.sh and cron.sh dependencies
 RUN set -ex; \
     \
@@ -108,11 +117,6 @@ RUN { \
     chmod -R g=u /var/www
 
 VOLUME /var/www/html
-
-# Enable SSL support
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y ssl-cert
-RUN a2enmod ssl
-RUN a2ensite default-ssl
 
 RUN a2enmod headers rewrite remoteip ;\
     {\
