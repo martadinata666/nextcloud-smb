@@ -39,6 +39,7 @@ RUN set -ex; \
         libwebp-dev \
         libgmp-dev \
         libsmbclient-dev \
+        nano \
     ; \
     \
     debMultiarch="$(dpkg-architecture --query DEB_BUILD_MULTIARCH)"; \
