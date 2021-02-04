@@ -41,6 +41,7 @@ RUN set -ex; \
         libsmbclient-dev \
         nano \
         ssl-cert \
+        openssl \
     ; \
     \
     debMultiarch="$(dpkg-architecture --query DEB_BUILD_MULTIARCH)"; \
@@ -111,9 +112,9 @@ RUN { \
 VOLUME /var/www/html
 
 # Enable SSL support
+RUN /usr/sbin/make-ssl-cert generate-default-snakeoil --force-overwrite
 RUN a2enmod ssl
 RUN a2ensite default-ssl
-RUN /usr/sbin/make-ssl-cert generate-default-snakeoil
 
 RUN a2enmod headers rewrite remoteip ;\
     {\
