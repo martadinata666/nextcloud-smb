@@ -40,8 +40,6 @@ RUN set -ex; \
         libgmp-dev \
         libsmbclient-dev \
         nano \
-        ssl-cert \
-        openssl \
     ; \
     \
     debMultiarch="$(dpkg-architecture --query DEB_BUILD_MULTIARCH)"; \
@@ -112,7 +110,7 @@ RUN { \
 VOLUME /var/www/html
 
 # Enable SSL support
-RUN /usr/sbin/make-ssl-cert generate-default-snakeoil --force-overwrite
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y ssl-cert
 RUN a2enmod ssl
 RUN a2ensite default-ssl
 
