@@ -3,7 +3,7 @@ FROM php:7.4-apache-buster
 
 # install the ssl-cert package which will create a "snakeoil" keypair
 RUN apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y ssl-cert \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y ssl-cert nano \
  && rm -r /var/lib/apt/lists/*
 
 # enable ssl module and enable the default-ssl site
@@ -48,7 +48,6 @@ RUN set -ex; \
         libwebp-dev \
         libgmp-dev \
         libsmbclient-dev \
-        nano \
     ; \
     \
     debMultiarch="$(dpkg-architecture --query DEB_BUILD_MULTIARCH)"; \
