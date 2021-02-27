@@ -2,6 +2,7 @@
 variables:
   RELEASE: "21.0.0"
   RELEASE_BETA: "21.0.0RC1"
+  RELEASE_PHP8: "21.0.0PHP8"
 docker-build-production:
   # Official docker image.
   image: docker:latest
@@ -50,9 +51,9 @@ docker-build-php8:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - docker login -u "$CI_DOCKERHUB_REGISTRY_USER" -p "$CI_DOCKERHUB_REGISTRY_PASSWORD" $CI_DOCKERHUB_REGISTRY
   script:
-    - docker build --build-arg NEXTCLOUD_VERSION=$RELEASE --pull -t "$CI_REGISTRY_IMAGE:$RELEASE" -t "$CI_DOCKERHUB_REGISTRY_IMAGE:$RELEASE" . -f Dockerfile.php8
-    - docker push "$CI_REGISTRY_IMAGE:$RELEASEphp8"
-    - docker push "$CI_DOCKERHUB_REGISTRY_IMAGE:$RELEASEphp8"
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:$RELEASE_PHP8" -t "$CI_DOCKERHUB_REGISTRY_IMAGE:$RELEASE_PHP8" . -f Dockerfile.php8
+    - docker push "$CI_REGISTRY_IMAGE:$RELEASE_PHP8
+    - docker push "$CI_DOCKERHUB_REGISTRY_IMAGE:$RELEASE_PHP8"
   only:
     refs:
       - master
