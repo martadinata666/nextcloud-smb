@@ -51,8 +51,8 @@ docker-build-php8:
     - docker login -u "$CI_DOCKERHUB_REGISTRY_USER" -p "$CI_DOCKERHUB_REGISTRY_PASSWORD" $CI_DOCKERHUB_REGISTRY
   script:
     - docker build --build-arg NEXTCLOUD_VERSION=$RELEASE --pull -t "$CI_REGISTRY_IMAGE:$RELEASE" -t "$CI_DOCKERHUB_REGISTRY_IMAGE:$RELEASE" . -f Dockerfile.php8
-    - docker push "$CI_REGISTRY_IMAGE:$RELEASE-php8"
-    - docker push "$CI_DOCKERHUB_REGISTRY_IMAGE:$RELEASE-php8"
+    - docker push "$CI_REGISTRY_IMAGE:$RELEASEphp8"
+    - docker push "$CI_DOCKERHUB_REGISTRY_IMAGE:$RELEASEphp8"
   only:
     refs:
       - master
