@@ -118,7 +118,7 @@ RUN { \
     mkdir /var/www/data; \
     chown -R www-data:root /var/www; \
     usermod -u 1000 www-data; \
-    groupmod -u 1000 www-data; \
+    groupmod -g 1000 www-data; \
     chmod -R g=u /var/www
 
 VOLUME /var/www/html
